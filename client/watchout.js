@@ -44,14 +44,28 @@ svg.selectAll('image')
 
 // create enemy data
 var meteors = d3.range(10).map(function() {
-	return {
-		href: "asteroid.png",
-		x : Math.random() * gameOptions.width,
-		y : Math.random() * gameOptions.height,
-		height: 20 + 'px',
-  	width: 20 + 'px'
-	}
+	var met = new Meteor()
+	console.log(met)
+	return met
+
 })
+
+
+var createMeteor = function() {
+	// Create new meteor object and push to array
+}
+
+var updateMeteor = function() {
+	// Update all meteors based on current attributes
+}
+
+var spawnFuel = function() {
+
+}
+
+var updateFuel = function() {
+
+}
 
 //append enemies
 svg.selectAll('image')
@@ -68,6 +82,16 @@ svg.selectAll('image')
 		return data.width})	
 	.attr('xlink:href', function(data) {
 		return data.href})
+	.transition()
+	.duration(function(data) {
+		return data.speed
+	})
+	.attr('x', function(data) {
+		return data.targetx
+	})
+	.attr('y', function(data) {
+		return data.targety
+	})
 
 // create ball data
 var updateEnemy = function() {
@@ -153,7 +177,7 @@ var setStats = function() {
 // Move enemies
 setInterval(function() {
 	setStats()
-	updateEnemy()
+	//updateEnemy()
 }, 500)
 
 
